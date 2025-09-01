@@ -7,26 +7,31 @@ void swap(int& x,int& y){
 	y=temp;
 }
 int partition(vector<int>& arr,int low,int high){
+	int i=low,j=high;
 	int temp=arr[low];
-	while(low<high){
-		while(arr[high]>temp){
-			high--;
+	while(i<j){
+		while(j>i&&arr[j]<=temp)
+		{
+			j--;
+		}arr[i]=arr[j];
+		while(i<j&&arr[i>=temp])
+		{
+			i--;
 		}
-		swap(arr[high],arr[low]);
-		while(arr[low]<temp){
-			low++;
-			
-		}
-		swap(arr[low],arr[high])
+		arr[j]=arr[i];
+
+		
 	}
-	arr[low]=temp;
-	return low;
+	arr[i]=temp;
+	return i;
+	
 }
 void QuickSort(vector<int>& arr,int low,int,high){
+	int address;
 	if(low<high){
 		int address=partition(arr,low,high);
-		QuickSort(arr,low,address);
-		QuickSort(arr,address,high);
+		QuickSort(arr,low,address-1);
+		QuickSort(arr,address,high+1);
 
 	}
 }
